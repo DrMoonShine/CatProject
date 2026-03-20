@@ -1,0 +1,13 @@
+CREATE TABLE items (
+    id TEXT NOT NULL PRIMARY KEY,
+    tags TEXT NOT NULL,         -- JSON строка или CSV
+    mimetype TEXT NOT NULL,
+    createdAt TEXT NOT NULL
+);
+
+insertItem:
+INSERT INTO items(id, tags, mimetype, createdAt)
+VALUES (?, ?, ?, ?);
+
+selectAll:
+SELECT * FROM items;

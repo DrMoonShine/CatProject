@@ -1,3 +1,4 @@
+import app.cash.sqlite.migrations.Database
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -11,7 +12,6 @@ plugins {
     alias { libs.plugins.kotlinSerialization }
 
 }
-
 kotlin {
     androidTarget {
         compilerOptions {
@@ -50,6 +50,8 @@ kotlin {
             implementation(libs.ktor.client.serialization)
 
             implementation(libs.sqldelight.sqlite.adapter)
+            implementation(libs.sqldelight.sqlite.driver)
+            implementation(libs.sqldelight.runtime)
             implementation(libs.kodein.di)
 
             implementation(libs.multiplatform.settings)
@@ -67,6 +69,13 @@ kotlin {
             implementation(libs.kotlinx.coroutinesSwing)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqldelight.sqlite.driver)
+        }
+    }
+}
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("database")
         }
     }
 }
