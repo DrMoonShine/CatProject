@@ -1,4 +1,4 @@
-package database
+package di
 
 import org.kodein.di.DI
 

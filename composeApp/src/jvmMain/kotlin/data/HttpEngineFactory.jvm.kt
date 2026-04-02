@@ -1,11 +1,9 @@
-package ktor
+package data
 
 import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.engine.okhttp.OkHttp
 
-
 actual object HttpEngineFactory {
     actual fun createEngine(): HttpClientEngineFactory<HttpClientEngineConfig> = OkHttp
-
 }

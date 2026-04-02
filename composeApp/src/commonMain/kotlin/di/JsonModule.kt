@@ -1,4 +1,4 @@
-package json
+package di
 
 import kotlinx.serialization.json.Json
 import org.kodein.di.DI

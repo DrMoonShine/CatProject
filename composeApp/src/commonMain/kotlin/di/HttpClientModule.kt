@@ -1,5 +1,6 @@
-package ktor
+package di
 
+import data.HttpEngineFactory
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -14,23 +15,17 @@ import org.kodein.di.singleton
 import org.kodein.di.bind
 import org.kodein.di.instance
 
-val ktorModule = DI.Module("ktorModule"){
+val httpClientModule = DI.Module("httpClientModule"){
     bind<HttpClient>() with singleton {
-        HttpClient(HttpEngineFactory.createEngine()){
-            install(Logging){
+        HttpClient(HttpEngineFactory.createEngine()) {
+            install(Logging) {
                 logger = Logger.SIMPLE
                 level = LogLevel.ALL
             }
-            install(ContentNegotiation){
+            install(ContentNegotiation) {
                 json(instance())
-                /*json(Json{
-                        ignoreUnknownKeys = true
-                        isLenient = true
-                    }
-
-                )*/
             }
-            install(HttpTimeout){
+            install(HttpTimeout) {
                 connectTimeoutMillis = 15000
                 requestTimeoutMillis = 30000
             }
